@@ -1,0 +1,24 @@
+
+.header-outer{
+    padding: 0.9rem;
+    box-shadow:1px 1px 28px -43px rgba(0, 0, 0, 0.93) ; 
+    background-color:#ffffff;
+}
+
+.btn{
+    background-color: #ffffff;
+    border: 2px solid rgb(208, 208, 208);
+    border-radius: 0.3rem;
+    padding: 4px 8px;
+    display: flex;
+    font-weight: bold;
+    font-size: 12px;
+    color: rgb(44, 44, 44);
+    align-items: center;
+    gap: 4px;
+    margin-left: 2.5rem;
+}
+.btn span{
+    display: flex;
+    align-items: center;
+}

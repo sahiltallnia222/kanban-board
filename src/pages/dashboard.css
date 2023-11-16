@@ -1,0 +1,13 @@
+
+.status-outer{
+    display: grid;
+    margin: 2rem;
+    align-items: flex-start;
+    grid-template-columns: 360px 360px 360px 360px 360px;
+    column-gap: 8px;
+    overflow: scroll;
+    overflow-y: hidden;
+}
+.status-inner{
+    padding-bottom: 1rem;
+}
