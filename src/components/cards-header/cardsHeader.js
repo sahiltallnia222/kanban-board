@@ -25,10 +25,10 @@ export default function CardsHeader({title,count}) {
         'Todo':<FaRegCircle color='#c7c7c7ff' size={'1em'}/>,
         'Canceled':<MdCancel color='red' size={'1em'}/>,
         'No Priority':<HiOutlineDotsHorizontal size={'1em'}/>,
-        'Low':<BsExclamationSquareFill color='orange' size={'1em'}/>,
-        'Medium':<MdSignalCellularAlt2Bar size={'1em'} />,
-        'High':<FiBarChart size={'1em'} />,
-        'Urgent':<GiNetworkBars size={'1em'} />,
+        'Low':<MdSignalCellularAlt2Bar size={'1em'}/>,
+        'Medium':<FiBarChart size={'1em'} />,
+        'High':<GiNetworkBars size={'1em'} />,
+        'Urgent':<BsExclamationSquareFill color='orange' size={'1em'} />,
     }
 
     function getRandomColor() {

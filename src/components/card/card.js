@@ -39,10 +39,10 @@ export default function Card({item,user,group}) {
         'Todo':<FaRegCircle color='#c7c7c7ff' size={'0.8em'}/>,
         'Canceled':<MdCancel color='red' size={'0.8em'}/>,
         'No priority':<HiOutlineDotsHorizontal size={'0.8em'}/>,
-        'Low':<BsExclamationSquareFill color='orange' size={'0.8em'}/>,
-        'Medium':<MdSignalCellularAlt2Bar size={'0.8em'} />,
-        'High':<FiBarChart size={'0.8em'} />,
-        'Urgent':<GiNetworkBars size={'0.8em'} />,
+        'Low':<MdSignalCellularAlt2Bar size={'1em'}/>,
+        'Medium':<FiBarChart size={'1em'} />,
+        'High':<GiNetworkBars size={'1em'} />,
+        'Urgent':<BsExclamationSquareFill color='orange' size={'1em'} />,
     }
     function getImgText(str){
 
