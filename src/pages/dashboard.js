@@ -7,7 +7,6 @@ import axios from 'axios';
 export default function Dashboard({displayVals}) {
     let grouping=displayVals.grouping;
     let ordering=displayVals.ordering;
-    // console.log(grouping,ordering);
     let priority_obj={
         0:'No priority',
         1:'Low',
@@ -93,7 +92,6 @@ export default function Dashboard({displayVals}) {
                 else arr.sort(function(a,b){return b.priority-a.priority})
                 userData[key]=arr;
             }
-            // console.log(userData);
             setData(userData);
         }
     }

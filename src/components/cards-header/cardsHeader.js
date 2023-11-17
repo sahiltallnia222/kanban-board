@@ -1,5 +1,4 @@
 import './cardsHeader.css';
-import { FaRegDotCircle } from "react-icons/fa";
 import { MdAdd } from "react-icons/md";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { RxHalf2 } from "react-icons/rx";

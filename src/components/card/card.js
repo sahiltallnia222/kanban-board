@@ -12,9 +12,6 @@ import { GiNetworkBars } from "react-icons/gi";
 
 
 export default function Card({item,user,group}) {
-    // let item={id:item.id,title:item.title,tag:item.tag,userId:item.userId,status:item.status,priority:item.priority}
-    // console.log(item);
-
     function getRandomColor() {
         var letters = '0123456789ABCDEF';
         var color = '#';
@@ -26,8 +23,6 @@ export default function Card({item,user,group}) {
     let x="";
     let priorityIcon="";
     let statusIcon="";
-
-    // let headersVals=['In Progress','Done','Todo','Canceled','Backlog','No Priority','Low','High','Medium','Urgent'];
 
     let priority_obj={
         0:'No priority',
