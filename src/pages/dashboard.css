@@ -12,6 +12,23 @@
     padding-bottom: 1rem;
 }
 
+.loading{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rem;
+  animation: cirRotate 1.3s linear infinite;
+}
+
+@keyframes cirRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 
 .scrollbarClass{
     scrollbar-width: auto;

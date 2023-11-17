@@ -3,6 +3,7 @@ import Card from '../components/card/card';
 import CardsHeader from '../components/cards-header/cardsHeader';
 import './dashboard.css';
 import axios from 'axios';
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export default function Dashboard({displayVals}) {
     let grouping=displayVals.grouping;
@@ -102,9 +103,12 @@ export default function Dashboard({displayVals}) {
     },[grouping,ordering])
 
     if(data==null){
-        return <p style={{textAlign:'center',marginTop:'3rem'}}>
-            Loading...
-        </p>
+        // return <p style={{textAlign:'center',marginTop:'3rem'}}>
+        //     Loading...
+        // </p>
+        return <div className='loading'>
+            <AiOutlineLoading3Quarters size={'2rem'} />
+        </div>
     }
 
     if(grouping=="status"){
