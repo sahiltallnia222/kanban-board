@@ -48,3 +48,18 @@
   .scrollbarClass::-webkit-scrollbar-thumb:active {
     background-color: #434d65;
   }
+
+
+
+
+  @media screen and (max-width: 480px) {
+    .status-outer{
+      display: grid;
+      margin: 1rem;
+      align-items: flex-start;
+      grid-template-columns: 360px 360px 360px 360px 360px;
+      column-gap: 4px;
+      overflow: scroll;
+      overflow-y: hidden;
+  }
+  }
