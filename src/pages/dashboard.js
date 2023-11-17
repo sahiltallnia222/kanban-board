@@ -17,6 +17,7 @@ export default function Dashboard({displayVals}) {
     const [data,setData]=useState(null)
     const [users,setUser]=useState(null)
     const getData=async()=>{
+        setData(null)
         const res=await axios.get('https://api.quicksell.co/v1/internal/frontend-assignment');
         let resData={};
         resData=res.data;
@@ -101,9 +102,9 @@ export default function Dashboard({displayVals}) {
     },[grouping,ordering])
 
     if(data==null){
-        return <div>
+        return <p style={{textAlign:'center',marginTop:'3rem'}}>
             Loading...
-        </div>
+        </p>
     }
 
     if(grouping=="status"){
