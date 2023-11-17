@@ -21,6 +21,11 @@
     font-weight: 700;
     font-size: 0.9rem;
     color: rgb(98, 97, 97);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
 }
 
 .left{
