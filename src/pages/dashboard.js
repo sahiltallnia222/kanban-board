@@ -7,7 +7,7 @@ import axios from 'axios';
 export default function Dashboard({displayVals}) {
     let grouping=displayVals.grouping;
     let ordering=displayVals.ordering;
-    console.log(grouping,ordering);
+    // console.log(grouping,ordering);
     let priority_obj={
         0:'No priority',
         1:'Low',
@@ -16,11 +16,12 @@ export default function Dashboard({displayVals}) {
         4:'Urgent'
     }
     const [data,setData]=useState(null)
-
+    const [users,setUser]=useState(null)
     const getData=async()=>{
         const res=await axios.get('https://api.quicksell.co/v1/internal/frontend-assignment');
         let resData={};
         resData=res.data;
+        setUser(resData.users)
         if(grouping==='status'){
             let statusData={};
             let tickets=resData.tickets;
@@ -68,8 +69,32 @@ export default function Dashboard({displayVals}) {
                 else arr.sort(function(a,b){return b.priority-a.priority})
                 priorityData[key]=arr;
             }
-            console.log(priorityData);
             setData(priorityData);
+        }else{
+            let userData={};
+            let tickets=resData.tickets;
+            for(let i=0;i<tickets.length;i++){
+                let st=tickets[i]['userId'];
+                if(userData[st]===undefined){
+                    userData[st]=[];
+                    userData[st].push(tickets[i]);
+                }else{
+                    userData[st].push(tickets[i]);
+                }
+            }
+
+            let keys=Object.keys(userData)
+            for(let i=0;i<keys.length;i++){
+                let key=keys[i];
+                let arr=userData[key];
+                if(ordering==='title'){
+                    arr.sort((a,b)=>a.title.localeCompare(b.title))
+                }
+                else arr.sort(function(a,b){return b.priority-a.priority})
+                userData[key]=arr;
+            }
+            // console.log(userData);
+            setData(userData);
         }
     }
 
@@ -79,19 +104,20 @@ export default function Dashboard({displayVals}) {
 
     if(data==null){
         return <div>
-            Something went wrong...
+            Loading...
         </div>
     }
 
     if(grouping=="status"){
         return <div>
-                <div className='status-outer'>
+                <div className='status-outer scrollbarClass'>
                     <div className='status-inner'>
                     <CardsHeader title={'Backlog'} count={data['Backlog']?data['Backlog'].length:0}/>
                         {data['Backlog'] && <div>
                             {
                                 data['Backlog'].map((item,index) =>{
-                                    return <Card key={index} item={item}/>
+                                    let a=users.filter((user)=> user.id==item.userId)[0]
+                                    return <Card key={index} item={item} user={a} group={'status'}/>
                                 })
                             }
                         </div>
@@ -102,7 +128,8 @@ export default function Dashboard({displayVals}) {
                         {data['Todo'] && <div>
                             {
                                 data['Todo'].map((item,index) =>{
-                                    return <Card key={index} item={item}/>
+                                    let a=users.filter((user)=> user.id==item.userId)[0]
+                                    return <Card key={index} item={item} user={a} group={'status'}/>
                                 })
                             }
                         </div>
@@ -113,7 +140,8 @@ export default function Dashboard({displayVals}) {
                         {data['In progress'] && <div>
                                 {
                                     data['In progress'].map((item,index) =>{
-                                        return <Card key={index} item={item}/>
+                                        let a=users.filter((user)=> user.id==item.userId)[0]
+                                        return <Card key={index} item={item} user={a} group={'status'}/>
                                     })
                                 }
                             </div>
@@ -124,7 +152,8 @@ export default function Dashboard({displayVals}) {
                         {data['Done'] && <div>
                                 {
                                     data['Done'].map((item,index) =>{
-                                        return <Card key={index} item={item}/>
+                                        let a=users.filter((user)=> user.id==item.userId)[0]
+                                        return <Card key={index} item={item} user={a} group={'status'}/>
                                     })
                                 }
                             </div>
@@ -135,7 +164,8 @@ export default function Dashboard({displayVals}) {
                         {data['Canceled'] && <div>
                                 {
                                     data['Canceled'].map((item,index) =>{
-                                        return <Card key={index} item={item}/>
+                                        let a=users.filter((user)=> user.id==item.userId)[0]
+                                        return <Card key={index} item={item} user={a} group={'status'}/>
                                     })
                                 }
                             </div>
@@ -148,21 +178,42 @@ export default function Dashboard({displayVals}) {
 
     }else if(grouping==="user"){
         return <div>
-            
+            <div className="status-outer scrollbarClass">
+                {
+                    Object.keys(data).map((key,index)=>{
+                        let usr=users.filter((user)=>user.id==key)
+                        if(!usr[0]){
+                            return <div key={index}></div>
+                        }
+                        return <div key={index} className="status-inner">
+                            <CardsHeader title={usr[0].name} count={data[key]?data[key].length:0}/>
+                            {
+                                data[key].map((item,index)=>{
+                                    let a=users.filter((user)=> user.id==item.userId)[0]
+                                    return <Card key={index+data[key].length+2} item={item} user={a} group={'users'}/>
+                                })
+                            }
+                        </div>})
+
+                }
+            </div>
+
+
+
+
         </div>
-
-
 
     }
     else if(grouping==="priority"){
         return <div>
-                <div className='status-outer'>
+                <div className='status-outer scrollbarClass'>
                     <div className='status-inner'>
                     <CardsHeader title={'No Priority'} count={data['No priority']?data['No priority'].length:0}/>
                         {data['No priority'] && <div>
                             {
                                 data['No priority'].map((item,index) =>{
-                                    return <Card key={index} item={item}/>
+                                    let a=users.filter((user)=> user.id==item.userId)[0]
+                                    return <Card key={index} item={item} user={a} group={'priority'}/>
                                 })
                             }
                         </div>
@@ -173,7 +224,8 @@ export default function Dashboard({displayVals}) {
                         {data['Low'] && <div>
                             {
                                 data['Low'].map((item,index) =>{
-                                    return <Card key={index} item={item}/>
+                                    let a=users.filter((user)=> user.id==item.userId)[0]
+                                    return <Card key={index} item={item} user={a} group={'priority'}/>
                                 })
                             }
                         </div>
@@ -184,7 +236,8 @@ export default function Dashboard({displayVals}) {
                         {data['Medium'] && <div>
                                 {
                                     data['Medium'].map((item,index) =>{
-                                        return <Card key={index} item={item}/>
+                                        let a=users.filter((user)=> user.id==item.userId)[0]
+                                        return <Card key={index} item={item} user={a} group={'priority'}/>
                                     })
                                 }
                             </div>
@@ -195,7 +248,8 @@ export default function Dashboard({displayVals}) {
                         {data['High'] && <div>
                                 {
                                     data['High'].map((item,index) =>{
-                                        return <Card key={index} item={item}/>
+                                        let a=users.filter((user)=> user.id==item.userId)[0]
+                                        return <Card key={index} item={item} user={a} group={'priority'}/>
                                     })
                                 }
                             </div>
@@ -206,7 +260,8 @@ export default function Dashboard({displayVals}) {
                         {data['Urgent'] && <div>
                                 {
                                     data['Urgent'].map((item,index) =>{
-                                        return <Card key={index} item={item}/>
+                                        let a=users.filter((user)=> user.id==item.userId)[0]
+                                        return <Card key={index} item={item} user={a} group={'priority'}/>
                                     })
                                 }
                             </div>

@@ -32,14 +32,24 @@ export default function CardsHeader({title,count}) {
         'Urgent':<GiNetworkBars size={'1em'} />,
     }
 
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
     if(headersVals.includes(title)){
         x=headerIcons[title];
     }else if(title) {
         let arr=title.split(" ");
         x=arr[0][0];
         if(arr.length>1){
-            x+=' '+arr[1][0];
+            x+=''+arr[1][0].toUpperCase();
         }
+        x=<div className="img-box" style={{backgroundColor:getRandomColor()}}>{x}</div>
     }
 
 
