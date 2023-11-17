@@ -6,7 +6,7 @@ import { useState } from "react";
 
 function App() {
 
-  const [displayVals,setDisplayVals]=useState({grouping:'status',ordering:'priority'})
+  const [displayVals,setDisplayVals]=useState({grouping:'status',ordering:'title'})
   
   const changeDisplay=(grouping,ordering)=>{
     setDisplayVals({grouping:grouping,ordering:ordering})

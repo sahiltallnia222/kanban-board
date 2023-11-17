@@ -17,8 +17,41 @@
     align-items: center;
     gap: 4px;
     margin-left: 2.5rem;
+    position: relative;
+    cursor: pointer;
 }
 .btn span{
     display: flex;
     align-items: center;
+}
+.dropBox{
+    padding: 0.3rem;
+    width: 16rem;
+    background-color: #ffffff;
+    border: 2px solid rgb(208, 208, 208);
+    border-radius: 0.3rem;
+    position: absolute;
+    top: 3rem;
+    left: 3.2rem;
+}
+.dropItem{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.3rem;
+}
+
+.dropItem p{
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: rgb(101, 99, 99);
+}
+
+.select-box{
+    outline: none;
+    background-color: #ffffff;
+    border: 2px solid rgb(208, 208, 208);
+    border-radius: 0.3rem;
+    padding: 0.1rem 0.2rem;
+    font-weight: 600;
+    color: rgb(67, 67, 67);
 }
